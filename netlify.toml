@@ -1,0 +1,94 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/Biblioteca3plus_Hub.html"
+  status = 200
+
+# Canonicaliza: si alguien visita el archivo del Hub directo (con o sin
+# mayúsculas/extensión), lo mandamos de vuelta a la raíz — evita contenido
+# duplicado y deja una sola URL real como "home page".
+[[redirects]]
+  from = "/Biblioteca3plus_Hub.html"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/biblioteca3plus_hub"
+  to = "/"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Cache-Control = "public, max-age=3600"
+
+# Rutas amigables — cada producto accesible sin extensión .html
+[[redirects]]
+  from = "/vol1"
+  to = "/Vol01_Tu_Estrategia_de_Cocina_Semanal.html"
+  status = 200
+
+[[redirects]]
+  from = "/landing-vol1"
+  to = "/Vol01_Landing_Hotmart.html"
+  status = 200
+
+[[redirects]]
+  from = "/landing-vol2"
+  to = "/Vol02_Landing_Hotmart.html"
+  status = 200
+
+[[redirects]]
+  from = "/landing-vol3"
+  to = "/Vol03_Landing_Hotmart.html"
+  status = 200
+
+[[redirects]]
+  from = "/landing-bundle"
+  to = "/Bundle_Landing_Hotmart.html"
+  status = 200
+
+[[redirects]]
+  from = "/productos"
+  to = "/Biblioteca3plus_Hub.html"
+  status = 200
+
+[[redirects]]
+  from = "/vol2"
+  to = "/Vol02_Tu_Cena_Gana.html"
+  status = 200
+
+[[redirects]]
+  from = "/vol3"
+  to = "/Vol03_Parece_Que_Cocinas.html"
+  status = 200
+
+[[redirects]]
+  from = "/ob01"
+  to = "/OB01_La_Semana_Resuelta.html"
+  status = 200
+
+[[redirects]]
+  from = "/ob02"
+  to = "/OB02_Las_10_Cenas.html"
+  status = 200
+
+[[redirects]]
+  from = "/ob03"
+  to = "/OB03_El_Deck_del_Chef.html"
+  status = 200
+
+[[redirects]]
+  from = "/ob-a"
+  to = "/OB-A_Salsas_y_Aderezos.html"
+  status = 200
+
+[[redirects]]
+  from = "/ob-b"
+  to = "/OB-B_Ensaladas_Bases_Proteinas.html"
+  status = 200
