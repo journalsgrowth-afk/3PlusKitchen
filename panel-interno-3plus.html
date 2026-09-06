@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>3+ Kitchen — Panel interno</title>
+<style>
+  body{margin:0;background:#1C1C1C;color:#F5F0E8;font-family:'Hanken Grotesk',Arial,sans-serif;
+    padding:48px 22px;max-width:640px;margin-left:auto;margin-right:auto;}
+  h1{font-size:28px;margin-bottom:4px;}
+  p.sub{color:#9a9284;margin-top:0;margin-bottom:32px;font-size:14px;}
+  .group{margin-bottom:28px;}
+  .group h2{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#D4A017;
+    border-bottom:1px solid #333;padding-bottom:8px;}
+  a.card{display:block;background:#241f1a;border-radius:10px;padding:14px 16px;margin-bottom:8px;
+    color:#F5F0E8;text-decoration:none;font-weight:700;font-size:14px;}
+  a.card span{display:block;font-weight:400;color:#9a9284;font-size:12px;margin-top:2px;}
+
+  #gate{position:fixed;inset:0;background:#1C1C1C;display:flex;align-items:center;justify-content:center;
+    flex-direction:column;padding:24px;z-index:10;}
+  #gate h2{color:#F5F0E8;font-family:'Hanken Grotesk',Arial,sans-serif;font-size:16px;margin-bottom:16px;}
+  #gate input{padding:12px 14px;border-radius:8px;border:1px solid #444;background:#241f1a;color:#F5F0E8;
+    font-size:14px;width:100%;max-width:280px;margin-bottom:10px;}
+  #gate button{padding:12px 20px;border-radius:8px;border:none;background:#D4A017;color:#1C1C1C;
+    font-weight:800;font-size:13px;text-transform:uppercase;cursor:pointer;width:100%;max-width:280px;}
+  #gate .err{color:#e05a5a;font-size:12px;margin-top:10px;min-height:16px;}
+  #content{display:none;}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <h2>🔒 Panel interno 3+ Kitchen</h2>
+  <input type="password" id="pw" placeholder="Contraseña">
+  <button id="pwBtn">Entrar</button>
+  <div class="err" id="pwErr"></div>
+</div>
+
+<div id="content">
+  <h1>3+ Kitchen — Panel interno</h1>
+  <p class="sub">Uso interno del equipo. No compartir estos links — algunos son de acceso gratuito directo al contenido.</p>
+
+  <div class="group">
+    <h2>Landings de venta (públicas, comparte estas)</h2>
+    <a class="card" href="Vol01_Landing_Hotmart.html">Vol.01 — Tu Estrategia de Cocina Semanal<span>Checkout activo ✓</span></a>
+    <a class="card" href="Vol02_Landing_Hotmart.html">Vol.02 — Tu Cena Gana<span>Checkout activo ✓</span></a>
+    <a class="card" href="Vol03_Landing_Hotmart.html">Vol.03 — Tu Toque de Chef<span>Checkout activo ✓</span></a>
+    <a class="card" href="Bundle_Landing_Hotmart.html">Bundle — Colección Completa<span>Checkout activo ✓</span></a>
+  </div>
+
+  <div class="group">
+    <h2>Hub (esta es la que vive en la raíz del dominio)</h2>
+    <a class="card" href="Biblioteca3plus_Hub.html">Hub — Los 10 productos<span>10/10 checkouts activos ✓</span></a>
+  </div>
+
+  <div class="group">
+    <h2>⚠️ Páginas de entrega (NO públicas — acceso libre al contenido pagado)</h2>
+    <a class="card" href="Vol01_Tu_Estrategia_de_Cocina_Semanal.html">Vol.01 — libro completo</a>
+    <a class="card" href="Vol02_Tu_Cena_Gana.html">Vol.02 — libro completo</a>
+    <a class="card" href="Vol03_Parece_Que_Cocinas.html">Vol.03 — libro completo</a>
+    <a class="card" href="OB01_La_Semana_Resuelta.html">OB-01 — La Semana Resuelta</a>
+    <a class="card" href="OB02_Las_10_Cenas.html">OB-02 — Las 10 Cenas</a>
+    <a class="card" href="OB03_El_Deck_del_Chef.html">OB-03 — El Deck del Chef</a>
+    <a class="card" href="OB-A_Salsas_y_Aderezos.html">OB-A — Salsas y Aderezos</a>
+    <a class="card" href="OB-B_Ensaladas_Bases_Proteinas.html">OB-B — Ensaladas, Bases y Proteínas</a>
+    <a class="card" href="OB-C_Lista_de_Compras_Interactiva.html">OB-C — Lista de Compras Interactiva</a>
+  </div>
+</div>
+
+<script>
+// Candado del lado del navegador. Sirve para evitar que alguien caiga aquí por
+// accidente (link viejo, buscador) y vea el contenido pagado gratis. NO es
+// seguridad real de servidor — cualquiera que vea el código fuente puede leer
+// la contraseña. Para bloqueo de verdad, las páginas de entrega no deberían
+// vivir en Netlify público en absoluto (ver nota aparte).
+const PASSWORD = "3plus2026"; // cámbiala aquí cuando quieras
+
+document.getElementById('pwBtn').addEventListener('click', checkPw);
+document.getElementById('pw').addEventListener('keydown', e => { if(e.key === 'Enter') checkPw(); });
+
+function checkPw(){
+  const val = document.getElementById('pw').value;
+  if(val === PASSWORD){
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('content').style.display = 'block';
+    sessionStorage.setItem('panel3plus_ok', '1');
+  } else {
+    document.getElementById('pwErr').textContent = 'Contraseña incorrecta';
+  }
+}
+
+// No pide contraseña de nuevo dentro de la misma sesión del navegador
+if(sessionStorage.getItem('panel3plus_ok') === '1'){
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
