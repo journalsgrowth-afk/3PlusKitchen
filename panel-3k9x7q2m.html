@@ -16,86 +16,39 @@
   a.card{display:block;background:#241f1a;border-radius:10px;padding:14px 16px;margin-bottom:8px;
     color:#F5F0E8;text-decoration:none;font-weight:700;font-size:14px;}
   a.card span{display:block;font-weight:400;color:#9a9284;font-size:12px;margin-top:2px;}
-
-  #gate{position:fixed;inset:0;background:#1C1C1C;display:flex;align-items:center;justify-content:center;
-    flex-direction:column;padding:24px;z-index:10;}
-  #gate h2{color:#F5F0E8;font-family:'Hanken Grotesk',Arial,sans-serif;font-size:16px;margin-bottom:16px;}
-  #gate input{padding:12px 14px;border-radius:8px;border:1px solid #444;background:#241f1a;color:#F5F0E8;
-    font-size:14px;width:100%;max-width:280px;margin-bottom:10px;}
-  #gate button{padding:12px 20px;border-radius:8px;border:none;background:#D4A017;color:#1C1C1C;
-    font-weight:800;font-size:13px;text-transform:uppercase;cursor:pointer;width:100%;max-width:280px;}
-  #gate .err{color:#e05a5a;font-size:12px;margin-top:10px;min-height:16px;}
-  #content{display:none;}
 </style>
 </head>
 <body>
 
-<div id="gate">
-  <h2>🔒 Panel interno 3+ Kitchen</h2>
-  <input type="password" id="pw" placeholder="Contraseña">
-  <button id="pwBtn">Entrar</button>
-  <div class="err" id="pwErr"></div>
+<h1>3+ Kitchen — Panel interno</h1>
+<p class="sub">Uso interno del equipo. No compartir estos links — algunos son de acceso gratuito directo al contenido. Esta página no está enlazada desde ningún lado del sitio público — su única protección es que nadie conoce esta URL.</p>
+
+<div class="group">
+  <h2>Landings de venta (públicas, comparte estas)</h2>
+  <a class="card" href="Vol01_Landing_Hotmart.html">Vol.01 — Tu Estrategia de Cocina Semanal<span>Checkout activo ✓</span></a>
+  <a class="card" href="Vol02_Landing_Hotmart.html">Vol.02 — Tu Cena Gana<span>Checkout activo ✓</span></a>
+  <a class="card" href="Vol03_Landing_Hotmart.html">Vol.03 — Tu Toque de Chef<span>Checkout activo ✓</span></a>
+  <a class="card" href="Bundle_Landing_Hotmart.html">Bundle — Colección Completa<span>Checkout activo ✓</span></a>
 </div>
 
-<div id="content">
-  <h1>3+ Kitchen — Panel interno</h1>
-  <p class="sub">Uso interno del equipo. No compartir estos links — algunos son de acceso gratuito directo al contenido.</p>
-
-  <div class="group">
-    <h2>Landings de venta (públicas, comparte estas)</h2>
-    <a class="card" href="Vol01_Landing_Hotmart.html">Vol.01 — Tu Estrategia de Cocina Semanal<span>Checkout activo ✓</span></a>
-    <a class="card" href="Vol02_Landing_Hotmart.html">Vol.02 — Tu Cena Gana<span>Checkout activo ✓</span></a>
-    <a class="card" href="Vol03_Landing_Hotmart.html">Vol.03 — Tu Toque de Chef<span>Checkout activo ✓</span></a>
-    <a class="card" href="Bundle_Landing_Hotmart.html">Bundle — Colección Completa<span>Checkout activo ✓</span></a>
-  </div>
-
-  <div class="group">
-    <h2>Hub (esta es la que vive en la raíz del dominio)</h2>
-    <a class="card" href="Biblioteca3plus_Hub.html">Hub — Los 10 productos<span>10/10 checkouts activos ✓</span></a>
-  </div>
-
-  <div class="group">
-    <h2>⚠️ Páginas de entrega (NO públicas — acceso libre al contenido pagado)</h2>
-    <a class="card" href="Vol01_Tu_Estrategia_de_Cocina_Semanal.html">Vol.01 — libro completo</a>
-    <a class="card" href="Vol02_Tu_Cena_Gana.html">Vol.02 — libro completo</a>
-    <a class="card" href="Vol03_Parece_Que_Cocinas.html">Vol.03 — libro completo</a>
-    <a class="card" href="OB01_La_Semana_Resuelta.html">OB-01 — La Semana Resuelta</a>
-    <a class="card" href="OB02_Las_10_Cenas.html">OB-02 — Las 10 Cenas</a>
-    <a class="card" href="OB03_El_Deck_del_Chef.html">OB-03 — El Deck del Chef</a>
-    <a class="card" href="OB-A_Salsas_y_Aderezos.html">OB-A — Salsas y Aderezos</a>
-    <a class="card" href="OB-B_Ensaladas_Bases_Proteinas.html">OB-B — Ensaladas, Bases y Proteínas</a>
-    <a class="card" href="OB-C_Lista_de_Compras_Interactiva.html">OB-C — Lista de Compras Interactiva</a>
-  </div>
+<div class="group">
+  <h2>Hub (esta es la que vive en la raíz del dominio)</h2>
+  <a class="card" href="Biblioteca3plus_Hub.html">Hub — Los 10 productos<span>10/10 checkouts activos ✓</span></a>
 </div>
 
-<script>
-// Candado del lado del navegador. Sirve para evitar que alguien caiga aquí por
-// accidente (link viejo, buscador) y vea el contenido pagado gratis. NO es
-// seguridad real de servidor — cualquiera que vea el código fuente puede leer
-// la contraseña. Para bloqueo de verdad, las páginas de entrega no deberían
-// vivir en Netlify público en absoluto (ver nota aparte).
-const PASSWORD = "3plus2026"; // cámbiala aquí cuando quieras
-
-document.getElementById('pwBtn').addEventListener('click', checkPw);
-document.getElementById('pw').addEventListener('keydown', e => { if(e.key === 'Enter') checkPw(); });
-
-function checkPw(){
-  const val = document.getElementById('pw').value;
-  if(val === PASSWORD){
-    document.getElementById('gate').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
-    sessionStorage.setItem('panel3plus_ok', '1');
-  } else {
-    document.getElementById('pwErr').textContent = 'Contraseña incorrecta';
-  }
-}
-
-// No pide contraseña de nuevo dentro de la misma sesión del navegador
-if(sessionStorage.getItem('panel3plus_ok') === '1'){
-  document.getElementById('gate').style.display = 'none';
-  document.getElementById('content').style.display = 'block';
-}
-</script>
+<div class="group">
+  <h2>⚠️ Páginas de entrega (contenido pagado)</h2>
+  <p style="color:#9a9284;font-size:12px;margin-top:-4px;">Estas ya NO viven en este sitio — se sacaron del deploy público por seguridad. Están guardadas localmente en la carpeta "ARCHIVOS_FINALES_CLIENTE_no_subir_a_github". Súbelas directo a Hotmart como archivo de entrega del producto correspondiente, o a donde vayan a distribuirse de forma privada.</p>
+  <div class="card" style="cursor:default;">Vol.01 — libro completo</div>
+  <div class="card" style="cursor:default;">Vol.02 — libro completo</div>
+  <div class="card" style="cursor:default;">Vol.03 — libro completo</div>
+  <div class="card" style="cursor:default;">OB-01 — La Semana Resuelta</div>
+  <div class="card" style="cursor:default;">OB-02 — Las 10 Cenas</div>
+  <div class="card" style="cursor:default;">OB-03 — El Deck del Chef</div>
+  <div class="card" style="cursor:default;">OB-A — Salsas y Aderezos</div>
+  <div class="card" style="cursor:default;">OB-B — Ensaladas, Bases y Proteínas</div>
+  <div class="card" style="cursor:default;">OB-C — Lista de Compras Interactiva</div>
+</div>
 
 </body>
 </html>
