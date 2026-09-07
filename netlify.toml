@@ -1,14 +1,11 @@
 [build]
   publish = "."
 
-[[redirects]]
-  from = "/"
-  to = "/Biblioteca3plus_Hub.html"
-  status = 200
+# Nota: la home page es index.html (antes era Biblioteca3plus_Hub.html servido
+# vía rewrite a "/"). Netlify sirve index.html en la raíz automáticamente,
+# sin necesitar ninguna regla — esto elimina el riesgo de conflicto entre
+# el rewrite y la regla de canonicalización que existía antes.
 
-# Canonicaliza: si alguien visita el archivo del Hub directo (con o sin
-# mayúsculas/extensión), lo mandamos de vuelta a la raíz — evita contenido
-# duplicado y deja una sola URL real como "home page".
 [[redirects]]
   from = "/Biblioteca3plus_Hub.html"
   to = "/"
@@ -158,5 +155,5 @@
 
 [[redirects]]
   from = "/productos"
-  to = "/Biblioteca3plus_Hub.html"
-  status = 200
+  to = "/"
+  status = 301
