@@ -54,6 +54,16 @@
   to = "/coleccion-completa.html"
   status = 200
 
+[[redirects]]
+  from = "/legal"
+  to = "/legal.html"
+  status = 200
+
+[[redirects]]
+  from = "/legal.html"
+  to = "/legal"
+  status = 301
+
 # Canonicaliza el .html de cada uno de vuelta a la URL limpia sin extensión.
 [[redirects]]
   from = "/tu-estrategia-de-cocina-semanal.html"
